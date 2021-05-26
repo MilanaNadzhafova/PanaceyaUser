@@ -1,0 +1,630 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище my_panaceyaModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Basket_Consist">
+          <Key>
+            <PropertyRef Name="ID_Consist" />
+          </Key>
+          <Property Name="ID_Consist" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Basket" Type="int" Nullable="false" />
+          <Property Name="ID_Medicines" Type="int" Nullable="false" />
+          <Property Name="Amount" Type="int" Nullable="false" />
+          <Property Name="Price" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Baskets">
+          <Key>
+            <PropertyRef Name="ID_Basket" />
+          </Key>
+          <Property Name="ID_Basket" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_User" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="ID_Category" />
+          </Key>
+          <Property Name="ID_Category" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Medicines">
+          <Key>
+            <PropertyRef Name="ID_Medicine" />
+          </Key>
+          <Property Name="ID_Medicine" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Category" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="Price" Type="money" Nullable="false" />
+          <Property Name="Amount" Type="int" Nullable="false" />
+          <Property Name="Presence" Type="bit" Nullable="false" />
+          <Property Name="Photo" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="ID_Order" />
+          </Key>
+          <Property Name="ID_Order" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Status" Type="int" />
+          <Property Name="ID_Pay" Type="int" Nullable="false" />
+          <Property Name="ID_Pharm" Type="int" Nullable="false" />
+          <Property Name="ID_Basket" Type="int" />
+        </EntityType>
+        <EntityType Name="Pay_Method">
+          <Key>
+            <PropertyRef Name="ID_Pay" />
+          </Key>
+          <Property Name="ID_Pay" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Method" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pharmacies">
+          <Key>
+            <PropertyRef Name="ID_Pharm" />
+          </Key>
+          <Property Name="ID_Pharm" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Time_Work" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="ID_Status" />
+          </Key>
+          <Property Name="ID_Status" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID_User" />
+          </Key>
+          <Property Name="ID_User" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Surname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Patronymic" Type="varchar" MaxLength="50" />
+          <Property Name="Birthday" Type="date" Nullable="false" />
+          <Property Name="Number_phone" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Roled" Type="varchar" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Basket_Consist_Baskets">
+          <End Role="Baskets" Type="Self.Baskets" Multiplicity="1" />
+          <End Role="Basket_Consist" Type="Self.Basket_Consist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Baskets">
+              <PropertyRef Name="ID_Basket" />
+            </Principal>
+            <Dependent Role="Basket_Consist">
+              <PropertyRef Name="ID_Basket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Basket_Consist_Medicines">
+          <End Role="Medicines" Type="Self.Medicines" Multiplicity="1" />
+          <End Role="Basket_Consist" Type="Self.Basket_Consist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medicines">
+              <PropertyRef Name="ID_Medicine" />
+            </Principal>
+            <Dependent Role="Basket_Consist">
+              <PropertyRef Name="ID_Medicines" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Baskets_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Baskets" Type="Self.Baskets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID_User" />
+            </Principal>
+            <Dependent Role="Baskets">
+              <PropertyRef Name="ID_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Medicines_Categories">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+          <End Role="Medicines" Type="Self.Medicines" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="ID_Category" />
+            </Principal>
+            <Dependent Role="Medicines">
+              <PropertyRef Name="ID_Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Baskets">
+          <End Role="Baskets" Type="Self.Baskets" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Baskets">
+              <PropertyRef Name="ID_Basket" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="ID_Basket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Pay_Method">
+          <End Role="Pay_Method" Type="Self.Pay_Method" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pay_Method">
+              <PropertyRef Name="ID_Pay" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="ID_Pay" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Pharmacies">
+          <End Role="Pharmacies" Type="Self.Pharmacies" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pharmacies">
+              <PropertyRef Name="ID_Pharm" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="ID_Pharm" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="ID_Status" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="ID_Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище my_panaceyaModelContainer">
+          <EntitySet Name="Basket_Consist" EntityType="Self.Basket_Consist" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Baskets" EntityType="Self.Baskets" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Medicines" EntityType="Self.Medicines" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pay_Method" EntityType="Self.Pay_Method" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pharmacies" EntityType="Self.Pharmacies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Basket_Consist_Baskets" Association="Self.FK_Basket_Consist_Baskets">
+            <End Role="Baskets" EntitySet="Baskets" />
+            <End Role="Basket_Consist" EntitySet="Basket_Consist" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Basket_Consist_Medicines" Association="Self.FK_Basket_Consist_Medicines">
+            <End Role="Medicines" EntitySet="Medicines" />
+            <End Role="Basket_Consist" EntitySet="Basket_Consist" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Baskets_Users" Association="Self.FK_Baskets_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Baskets" EntitySet="Baskets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Medicines_Categories" Association="Self.FK_Medicines_Categories">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Medicines" EntitySet="Medicines" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Baskets" Association="Self.FK_Orders_Baskets">
+            <End Role="Baskets" EntitySet="Baskets" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Pay_Method" Association="Self.FK_Orders_Pay_Method">
+            <End Role="Pay_Method" EntitySet="Pay_Method" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Pharmacies" Association="Self.FK_Orders_Pharmacies">
+            <End Role="Pharmacies" EntitySet="Pharmacies" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Status" Association="Self.FK_Orders_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="my_panaceyaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Basket_Consist">
+          <Key>
+            <PropertyRef Name="ID_Consist" />
+          </Key>
+          <Property Name="ID_Consist" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Basket" Type="Int32" Nullable="false" />
+          <Property Name="ID_Medicines" Type="Int32" Nullable="false" />
+          <Property Name="Amount" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="Baskets" Relationship="Self.FK_Basket_Consist_Baskets" FromRole="Basket_Consist" ToRole="Baskets" />
+          <NavigationProperty Name="Medicines" Relationship="Self.FK_Basket_Consist_Medicines" FromRole="Basket_Consist" ToRole="Medicines" />
+        </EntityType>
+        <EntityType Name="Baskets">
+          <Key>
+            <PropertyRef Name="ID_Basket" />
+          </Key>
+          <Property Name="ID_Basket" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_User" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Basket_Consist" Relationship="Self.FK_Basket_Consist_Baskets" FromRole="Baskets" ToRole="Basket_Consist" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Baskets_Users" FromRole="Baskets" ToRole="Users" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Baskets" FromRole="Baskets" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="ID_Category" />
+          </Key>
+          <Property Name="ID_Category" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Medicines" Relationship="Self.FK_Medicines_Categories" FromRole="Categories" ToRole="Medicines" />
+        </EntityType>
+        <EntityType Name="Medicines">
+          <Key>
+            <PropertyRef Name="ID_Medicine" />
+          </Key>
+          <Property Name="ID_Medicine" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Category" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Amount" Type="Int32" Nullable="false" />
+          <Property Name="Presence" Type="Boolean" Nullable="false" />
+          <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Basket_Consist" Relationship="Self.FK_Basket_Consist_Medicines" FromRole="Medicines" ToRole="Basket_Consist" />
+          <NavigationProperty Name="Categories" Relationship="Self.FK_Medicines_Categories" FromRole="Medicines" ToRole="Categories" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="ID_Order" />
+          </Key>
+          <Property Name="ID_Order" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Status" Type="Int32" />
+          <Property Name="ID_Pay" Type="Int32" Nullable="false" />
+          <Property Name="ID_Pharm" Type="Int32" Nullable="false" />
+          <Property Name="ID_Basket" Type="Int32" />
+          <NavigationProperty Name="Baskets" Relationship="Self.FK_Orders_Baskets" FromRole="Orders" ToRole="Baskets" />
+          <NavigationProperty Name="Pay_Method" Relationship="Self.FK_Orders_Pay_Method" FromRole="Orders" ToRole="Pay_Method" />
+          <NavigationProperty Name="Pharmacies" Relationship="Self.FK_Orders_Pharmacies" FromRole="Orders" ToRole="Pharmacies" />
+          <NavigationProperty Name="Status" Relationship="Self.FK_Orders_Status" FromRole="Orders" ToRole="Status" />
+        </EntityType>
+        <EntityType Name="Pay_Method">
+          <Key>
+            <PropertyRef Name="ID_Pay" />
+          </Key>
+          <Property Name="ID_Pay" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Method" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Pay_Method" FromRole="Pay_Method" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Pharmacies">
+          <Key>
+            <PropertyRef Name="ID_Pharm" />
+          </Key>
+          <Property Name="ID_Pharm" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Time_Work" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Pharmacies" FromRole="Pharmacies" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="ID_Status" />
+          </Key>
+          <Property Name="ID_Status" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status1" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Status" FromRole="Status" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID_User" />
+          </Key>
+          <Property Name="ID_User" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Number_phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Roled" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Baskets" Relationship="Self.FK_Baskets_Users" FromRole="Users" ToRole="Baskets" />
+        </EntityType>
+        <Association Name="FK_Basket_Consist_Baskets">
+          <End Role="Baskets" Type="Self.Baskets" Multiplicity="1" />
+          <End Role="Basket_Consist" Type="Self.Basket_Consist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Baskets">
+              <PropertyRef Name="ID_Basket" />
+            </Principal>
+            <Dependent Role="Basket_Consist">
+              <PropertyRef Name="ID_Basket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Basket_Consist_Medicines">
+          <End Role="Medicines" Type="Self.Medicines" Multiplicity="1" />
+          <End Role="Basket_Consist" Type="Self.Basket_Consist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medicines">
+              <PropertyRef Name="ID_Medicine" />
+            </Principal>
+            <Dependent Role="Basket_Consist">
+              <PropertyRef Name="ID_Medicines" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Baskets_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Baskets" Type="Self.Baskets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID_User" />
+            </Principal>
+            <Dependent Role="Baskets">
+              <PropertyRef Name="ID_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Baskets">
+          <End Role="Baskets" Type="Self.Baskets" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Baskets">
+              <PropertyRef Name="ID_Basket" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="ID_Basket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Medicines_Categories">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+          <End Role="Medicines" Type="Self.Medicines" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="ID_Category" />
+            </Principal>
+            <Dependent Role="Medicines">
+              <PropertyRef Name="ID_Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Pay_Method">
+          <End Role="Pay_Method" Type="Self.Pay_Method" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pay_Method">
+              <PropertyRef Name="ID_Pay" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="ID_Pay" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Pharmacies">
+          <End Role="Pharmacies" Type="Self.Pharmacies" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pharmacies">
+              <PropertyRef Name="ID_Pharm" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="ID_Pharm" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="ID_Status" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="ID_Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="my_panaceyaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Basket_Consist" EntityType="Self.Basket_Consist" />
+          <EntitySet Name="Baskets" EntityType="Self.Baskets" />
+          <EntitySet Name="Categories" EntityType="Self.Categories" />
+          <EntitySet Name="Medicines" EntityType="Self.Medicines" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" />
+          <EntitySet Name="Pay_Method" EntityType="Self.Pay_Method" />
+          <EntitySet Name="Pharmacies" EntityType="Self.Pharmacies" />
+          <EntitySet Name="Status" EntityType="Self.Status" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <AssociationSet Name="FK_Basket_Consist_Baskets" Association="Self.FK_Basket_Consist_Baskets">
+            <End Role="Baskets" EntitySet="Baskets" />
+            <End Role="Basket_Consist" EntitySet="Basket_Consist" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Basket_Consist_Medicines" Association="Self.FK_Basket_Consist_Medicines">
+            <End Role="Medicines" EntitySet="Medicines" />
+            <End Role="Basket_Consist" EntitySet="Basket_Consist" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Baskets_Users" Association="Self.FK_Baskets_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Baskets" EntitySet="Baskets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Baskets" Association="Self.FK_Orders_Baskets">
+            <End Role="Baskets" EntitySet="Baskets" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Medicines_Categories" Association="Self.FK_Medicines_Categories">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Medicines" EntitySet="Medicines" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Pay_Method" Association="Self.FK_Orders_Pay_Method">
+            <End Role="Pay_Method" EntitySet="Pay_Method" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Pharmacies" Association="Self.FK_Orders_Pharmacies">
+            <End Role="Pharmacies" EntitySet="Pharmacies" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Status" Association="Self.FK_Orders_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище my_panaceyaModelContainer" CdmEntityContainer="my_panaceyaEntities">
+          <EntitySetMapping Name="Basket_Consist">
+            <EntityTypeMapping TypeName="my_panaceyaModel.Basket_Consist">
+              <MappingFragment StoreEntitySet="Basket_Consist">
+                <ScalarProperty Name="ID_Consist" ColumnName="ID_Consist" />
+                <ScalarProperty Name="ID_Basket" ColumnName="ID_Basket" />
+                <ScalarProperty Name="ID_Medicines" ColumnName="ID_Medicines" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Baskets">
+            <EntityTypeMapping TypeName="my_panaceyaModel.Baskets">
+              <MappingFragment StoreEntitySet="Baskets">
+                <ScalarProperty Name="ID_Basket" ColumnName="ID_Basket" />
+                <ScalarProperty Name="ID_User" ColumnName="ID_User" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="my_panaceyaModel.Categories">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="ID_Category" ColumnName="ID_Category" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Medicines">
+            <EntityTypeMapping TypeName="my_panaceyaModel.Medicines">
+              <MappingFragment StoreEntitySet="Medicines">
+                <ScalarProperty Name="ID_Medicine" ColumnName="ID_Medicine" />
+                <ScalarProperty Name="ID_Category" ColumnName="ID_Category" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Presence" ColumnName="Presence" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="my_panaceyaModel.Orders">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="ID_Order" ColumnName="ID_Order" />
+                <ScalarProperty Name="ID_Status" ColumnName="ID_Status" />
+                <ScalarProperty Name="ID_Pay" ColumnName="ID_Pay" />
+                <ScalarProperty Name="ID_Pharm" ColumnName="ID_Pharm" />
+                <ScalarProperty Name="ID_Basket" ColumnName="ID_Basket" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pay_Method">
+            <EntityTypeMapping TypeName="my_panaceyaModel.Pay_Method">
+              <MappingFragment StoreEntitySet="Pay_Method">
+                <ScalarProperty Name="ID_Pay" ColumnName="ID_Pay" />
+                <ScalarProperty Name="Method" ColumnName="Method" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pharmacies">
+            <EntityTypeMapping TypeName="my_panaceyaModel.Pharmacies">
+              <MappingFragment StoreEntitySet="Pharmacies">
+                <ScalarProperty Name="ID_Pharm" ColumnName="ID_Pharm" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Time_Work" ColumnName="Time_Work" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="my_panaceyaModel.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="ID_Status" ColumnName="ID_Status" />
+                <ScalarProperty Name="Status1" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="my_panaceyaModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="my_panaceyaModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="ID_User" ColumnName="ID_User" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Number_phone" ColumnName="Number_phone" />
+                <ScalarProperty Name="Roled" ColumnName="Roled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

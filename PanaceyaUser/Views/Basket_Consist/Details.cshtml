@@ -1,0 +1,50 @@
+﻿@model PanaceyaUser.Models.Basket_Consist
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Basket_Consist</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Baskets.ID_Basket)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Baskets.ID_Basket)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Medicines.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Medicines.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_Consist }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

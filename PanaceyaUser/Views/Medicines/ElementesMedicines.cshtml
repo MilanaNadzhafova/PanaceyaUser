@@ -1,0 +1,36 @@
+﻿@model IEnumerable<PanaceyaUser.Models.Medicines>
+
+@if (Model != null)
+{
+    <div class="row d-flex justify-content-between" >
+        @foreach (var item in Model)
+        {
+
+            <div class="col-lg-4 col-md-6 text-center ">
+                <p class="">
+                    @Html.DisplayFor(modelItem => item.Name)
+                </p>
+
+                <a href='@Url.Action("Details", new { id = item.ID_Medicine })' class="item-hover"><img class="med" src="~/images/@Html.DisplayFor(modelItem => item.Photo)" /></a>
+
+                <p class="down">
+                    Цена:
+                    <span class="price"> @Html.DisplayFor(modelItem => item.Price) руб.</span>
+                    <span>
+                        @if (item.Presence == true)
+                        {
+                            <span class="yes"> В наличии</span>
+                        }
+                        else
+                        {
+                            <span class="no">Не в наличии</span>
+                        }
+                    </span>
+                </p>
+
+
+
+            </div>
+        }
+    </div>
+}

@@ -1,0 +1,48 @@
+﻿
+<div id="exampleModalCenter1" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content BackModalContent">
+            <div class="modal-header text-center" style="color:white!important">
+                <h5 class="modal-title" id="exampleModalLongTitle">Регистрация</h5>
+                <button type="button" class="close" data-dismiss="modal" style="outline:none!important" aria-label="Close">
+                    <span aria-hidden="true" style="color: black !important; font-size: 2rem">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex justify-content-around align-items-center row text-center mt-md-2 mb-3">
+                    <div class="row text-center">
+
+                        <div class="col-md-6">
+                            <input id="InpEmail" class="form-control mb-4 InputForValidation InputForReg" placeholder="Email" type="email" />
+                            <input id="InpPassword" type="password" class="form-control mb-4 InputForValidation InputForReg" placeholder="Пароль" />
+                        </div>
+                        <div class="col-md-6">
+                            <input id="InpSurname" type="text" class="form-control mb-4 InputForValidation InputForReg" placeholder="Фамилия" />
+                            <input id="InpName" type="text" class="form-control mb-4 InputForValidation InputForReg" placeholder="Имя" />
+                        </div>
+                        <div class="col-md-6">
+                            <input id="RepeatPass" type="password" class="form-control mb-4 InputForValidation InputForReg" placeholder="Повторите пароль" />
+                            <input id="InpDate" type="text" readonly="readonly" class="form-control mb-4 InputForValidation InputForReg" placeholder="Дата рождения" />
+                            
+                        </div>
+                        <div class="col-md-6">
+                            <input id="InpMiddleName" type="text" class="form-control mb-4 InputForValidation InputForReg" placeholder="Отчество" />
+                            <input id="InpPhone" type="text" class="form-control mb-4 InputForValidation InputForReg" placeholder="Номер телефона" />
+                        </div>
+                    </div>
+                    <button id="LoginInSystem" class=" LoginReg" onclick="Regestration(this)">Зарегистрироваться</button>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@*@section Scripts {
+    @Scripts.Render("~/Scripts/jquery-3.5.1.js")
+    @Scripts.Render("~/Scripts/datepicker.js")
+    @Scripts.Render("~/Scripts/jquery.maskedinput.js")
+    @Scripts.Render("~/Scripts/validate.js")
+}*@

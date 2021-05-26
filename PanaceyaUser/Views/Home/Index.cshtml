@@ -1,0 +1,382 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Panaceya</title>
+
+    <link rel="icon" type="image/x-icon" href="assets/favicon1.ico" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+          integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.theme.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.transitions.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    @Scripts.Render("~/Scripts/datepicker.js")
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
+
+    @Styles.Render("~/Content/styles-dist.css")
+    @Styles.Render("~/Content/site.css")
+</head>
+
+<body vocab="http://schema.org/" id="page-top">
+
+    <!-- Masthead-->
+    <header class="masthead" id="home">
+        <div class="container">
+            <div class="header-row">
+                <div class="col-xl-6 offset-xl-6 col-lg-12 col-md-12 text-lg-right text-md-center text-center mt-md-5">
+                    <div class="masthead-subheading title-spacing">
+                        Береги здоровье
+                    </div>
+                    <div class="masthead-subheading ">
+                        вместе с Panaceya
+                    </div>
+                    <div class="header-column">
+                        <div class="masthead-heading">
+                            <h5 class="subtitle-spacing">Возможность приобретения лекарственных </h5>
+                            <h5 class="subtitle-big-spacing">
+                                препаратов, какой мы хотим ее видеть в XXI веке
+                            </h5>
+                        </div>
+                    </div>
+                    <a class="btn btn-primary btn-xl js-scroll-trigger " href="~/Medicines/Index">Перейти к каталогу</a>
+                </div>
+            </div>
+        </div>
+
+    </header>
+
+    <section class="page-section" id="advantages">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-heading">О нас</h2>
+            </div>
+            <div class="row text-center">
+                <div class="col-lg-4 col-md-6 item mb-5">
+                    <p class="take">
+                        удобный вариант <br>
+                        для тех, кто ценит <br>
+                        свое время
+                        и время <br>
+                        других людей
+                    </p>
+
+                    <img class="opacitu" src="~/images/advantages1.jpg" alt="">
+
+                </div>
+                <div class="col-lg-4 col-md-6 item  mb-5">
+                    <p class="take">
+                        удобный вариант <br>
+                        для тех, кто ценит <br>
+                        свое время
+                        и время <br>
+                        других людей
+                    </p>
+                    <img class="opacitu" src="~/images/advantages2.jpg" alt="">
+
+                </div>
+                <div class="col-lg-4 col-md-6 item  mb-5">
+                    <p class="take">
+                        удобный вариант <br>
+                        для тех, кто ценит <br>
+                        свое время
+                        и время <br>
+                        других людей
+                    </p>
+                    <img class="opacitu" src="~/images/advantages4.jpg" alt="">
+
+                </div>
+                <div class="col-lg-4 col-md-6 item mt-5  mb-5">
+                    <p class="take">
+                        удобный вариант <br>
+                        для тех, кто ценит <br>
+                        свое время
+                        и время <br>
+                        других людей
+                    </p>
+                    <img class="opacitu" src="~/images/advantages3.jpg" alt="">
+
+                </div>
+                <div class="col-lg-4 col-md-6 item mt-5  mb-5">
+                    <p class="take">
+                        удобный вариант <br>
+                        для тех, кто ценит <br>
+                        свое время
+                        и время <br>
+                        других людей
+                    </p>
+                    <img class="opacitu" src="~/images/advantages5.jpg" alt="">
+
+                </div>
+                <div class="col-lg-4 col-md-6 item mt-5  mb-5">
+                    <p class="take">
+                        удобный вариант <br>
+                        для тех, кто ценит <br>
+                        свое время
+                        и время <br>
+                        других людей
+                    </p>
+                    <img class="opacitu" src="~/images/advantages6.jpg" alt="">
+
+                </div>
+            </div>
+
+            @*<div class="row text-center mt-5">
+                    <div class="col-lg-4 col-md-6 item">
+                        <p class="take">
+                            удобный вариант <br>
+                            для тех, кто ценит <br>
+                            свое время
+                            и время <br>
+                            других людей
+                        </p>
+                        <img class="opacitu" src="images/advantages3.jpg" alt="">
+
+                    </div>
+                    <div class="col-lg-4 col-md-6 item">
+                        <p class="take">
+                            удобный вариант <br>
+                            для тех, кто ценит <br>
+                            свое время
+                            и время <br>
+                            других людей
+                        </p>
+                        <img class="opacitu" src="images/advantages5.jpg" alt="">
+
+                    </div>
+                    <div class="col-lg-4 col-md-6 item">
+                        <p class="take">
+                            удобный вариант <br>
+                            для тех, кто ценит <br>
+                            свое время
+                            и время <br>
+                            других людей
+                        </p>
+                        <img class="opacitu" src="images/advantages6.jpg" alt="">
+
+                    </div>
+                </div>*@
+
+        </div>
+    </section>
+    <section class="page-section fon" id="mobile_advantages">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-heading">О нас</h2>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-4 col-sm-6 col-12">
+                    <img src="https://img.icons8.com/dotty/80/000000/time.png" />
+                    <p class="text-muted">
+                        удобный вариант <br>
+                        для тех, кто ценит <br>
+                        свое время
+                        и время <br>
+                        других людей
+                    </p>
+                </div>
+
+                <div class="col-md-4 col-sm-6 col-12">
+                    <img src="https://img.icons8.com/ios/80/000000/hand-with-a-pill.png" />
+                    <p class="text-muted">
+                        удобный вариант <br>
+                        для тех, кто ценит <br>
+                        свое время
+                        и время <br>
+                        других людей
+                    </p>
+                </div>
+
+                <div class="col-md-4 col-12 ">
+                    <img src="https://img.icons8.com/ios/80/000000/pharmacy-shop.png" />
+                    <p class="text-muted mb-0">
+                        удобный вариант <br>
+                        для тех, кто ценит <br>
+                        свое время
+                        и время <br>
+                        других людей
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="page-section" id="udobst">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-heading">Удобство</h2>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-4 offset-md-1">
+                    <h4 class="">Выбрать необходимый товар</h4>
+                    <p class="text-muted udobstForP">
+                        Вы можете прочитать всю информации о необхдимом товаре, чтобы определиться с выбором
+                    </p>
+                </div>
+
+            </div>
+            <div class="row text-center">
+                <div class=" col-12 text-center">
+                    <img class="disp" src="~/images/Group1.png" />
+
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-4 offset-md-7">
+                    <h4 class="">Заказать в один клик</h4>
+                    <p class="text-muted udobstForP">
+                        С помощью удобного интерфейса можно заказть нужные товары
+                    </p>
+                </div>
+
+            </div>
+            <div class="row text-center">
+                <div class=" col-12 text-center">
+                    <img class="disp" src="~/images/Group1.png" />
+
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-4 offset-md-1">
+                    <h4 class="">
+                        Получить
+                        заказ в удобном месте.
+                    </h4>
+                    <p class="text-muted udobstForP">
+                        Для этого при оформлении заказа необходимо выбрать удобное место получения из всех предложенных
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="page-section" id="copyright">
+        <div class="container">
+
+            <div class="row ">
+                <div class=" col-12 text-lg-left text-center">
+
+                    <p class="copytext">
+                        Здоровье настолько перевешивает все остальные блага жизни, что поистине&nbsp;здоровый&nbsp;нищий счастливее&nbsp;больного&nbsp;короля
+
+                    </p>
+                </div>
+                <div class=" col-12 text-lg-right text-center">
+
+                    <p class="copytext2 mt-lg-3 mt-0">
+                        &copy;Артур Шопенгауэр
+
+                    </p>
+                </div>
+                <div class=" col-12 text-lg-left text-center">
+                    <a class="btn btn-primary btn-xl js-scroll-trigger " href="~/Medicines/Index">Перейти к каталогу</a>
+                </div>
+            </div>
+
+
+
+        </div>
+    </section>
+
+    <section class="page-section" id="courusel">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="mb-6 section-heading ">Отзывы</h2>
+            </div>
+
+            <div class="row justify-content-around">
+                <div class="col-md-offset-2 col-md-8">
+
+                    <div id="testimonial-slider" class="owl-carousel">
+
+                        <div class="testimonial">
+                            <div class="pic">
+                                <img src="https://bootstraptema.ru/snippets/slider/2016/testimonials/testimonials-1.jpg" alt="">
+                            </div>
+                            <h3 class="testimonial-title">Степан</h3>
+
+                            <img class="star" src="~/images/stars.png" />
+
+                            <p class="description">
+                                Чудесный, удобный сервис, все очень автоматизированно и приятно.
+                            </p>
+                        </div>
+
+                        <div class="testimonial">
+                            <div class="pic">
+                                <img src="https://bootstraptema.ru/snippets/slider/2016/testimonials/testimonials-2.jpg" alt="">
+                            </div>
+                            <h3 class="testimonial-title">Кристина</h3>
+                            <img class="star" src="~/images/stars.png" />
+                            <p class="description">
+                                Очень хорошая онлайн-аптека, минусов никаких при оформлении заказа нет.
+                            </p>
+                        </div>
+
+                        <div class="testimonial">
+                            <div class="pic">
+                                <img src="https://bootstraptema.ru/snippets/slider/2016/testimonials/testimonials-3.jpg" alt="">
+                            </div>
+                            <h3 class="testimonial-title">Степан</h3>
+                            <img class="star" src="~/images/stars.png" />
+
+                            <p class="description">
+                                Чудесный, удобный сервис, все очень автоматизированно и приятно.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading mb-5 mb-lg-5 mb-md-5 mb-sm-5">Контакты</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-light lrgr">
+                    <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A1469a56ace8aee7d332ce5d2f22357b16c8971dacb2b28d04ef08ee12eb637cb&amp;width=85%&amp;height=456&amp;lang=ru_RU&amp;scroll=true"></script>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        $(document).ready(function () {
+            $("#testimonial-slider").owlCarousel({
+                items: 1,
+                itemsDesktop: [1000, 1],
+                itemsDesktopSmall: [979, 1],
+                itemsTablet: [767, 1],
+                pagination: false,
+                transitionStyle: "fade",
+                navigation: true,
+                navigationText: ["", ""],
+                autoPlay: true
+            });
+        });
+    </script>
+
+</body>
+
+</html>

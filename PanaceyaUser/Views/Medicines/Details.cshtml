@@ -1,0 +1,93 @@
+﻿@model PanaceyaUser.Models.Medicines
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<section>
+    <div class="container">
+
+        @{
+
+            List<SelectListItem> list = new List<SelectListItem>();//Список значений для DDL
+            if(Model.Amount == 0)
+            {
+                list.Add(new SelectListItem() { Text = "0" });//Заполняем его
+
+            }
+            else {
+                for (int i = 1; i <= Model.Amount; i++)
+                {
+                    list.Add(new SelectListItem() { Text = i.ToString() });//Заполняем его
+                }
+            }
+
+
+        }
+        <span id="idMedicine" class="d-none">@Model.ID_Medicine</span>
+        <button class="btn" onclick="AddInBasket()">Добавить в корзину</button>
+
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+
+            <dd id="price">
+
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+
+            <dt>
+                @Html.DropDownList("AmountList", list, htmlAttributes: new { @class = "form-control DropAmount" })
+            </dt>
+
+
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Presence)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Presence)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Photo)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Photo)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Categories.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Categories.Name)
+            </dd>
+
+        </dl>
+    </div>
+</section>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_Medicine }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,68 @@
+﻿@model PanaceyaUser.Models.Users
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@Styles.Render("~/Content/datepicker.css")
+
+
+@using (Html.BeginForm("Create", "Users", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+
+
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+    <h4 class="our">~ Введите данные ~</h4>
+
+    <div class="registration" id="form">
+        <div class=" textreg">
+
+            <label for="Email" class="ForLabel">Введите E-mail:</label>
+            <input type="email" class="twoinput" id="Email"  />
+
+            <label for="Password" class="ForLabel">Введите пароль:</label>
+            <input type="password" class="twoinput" id="Password" />
+
+            <label for="TwoPassword" class="ForLabel">Повторите пароль:</label>
+            <input type="password" class="twoinput" id="TwoPassword" />
+
+            <label for="Surname" class="ForLabel">Фамилия:</label>
+            <input type="text" class="twoinput" id="Surname" />
+
+            <label for="InpName" class="ForLabel">Имя:</label>
+            <input type="text" class="twoinput" id="InpName" />
+
+            <label for="MiddleName" class="ForLabel">Отчество:</label>
+            <input type="text" class="twoinput" id="MiddleName" />
+
+            <label for="Date" class="ForLabel">Дата рождения:</label>
+            <input type="text" class="txt datepicker-here twoinput" id="Date" readonly="readonly" data-position="right top" />
+
+            <label for="Phone" class="ForLabel">Номер телефона:</label>
+            <input type="text" class="twoinput" id="Phone" />
+
+            <div class="entrance">
+                <input type="submit" value="Зарегистрироваться" class="btn btn-default" id="Btn" style="margin-top:25px;" />
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/jquery-3.5.1.js")
+    @Scripts.Render("~/Scripts/datepicker.js")
+    @Scripts.Render("~/Scripts/jquery.maskedinput.js")
+    @Scripts.Render("~/Scripts/validate.js")
+}
+
