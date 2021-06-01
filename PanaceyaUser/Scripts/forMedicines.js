@@ -81,3 +81,39 @@ function AddInBasket() {
     });
     
 }
+
+
+function DeleteProduct(item) {
+    let id = item.id
+    $("#DeleteProduct").modal("show")
+    $(".sureDelete").attr("id", id)
+    
+}
+
+function CancelDelete() {
+    $(".sureDelete").removeAttr("id")
+    $("#DeleteProduct").modal("hide")
+}
+
+function EndDelete(item) {
+    let id = item.id
+    let object = {
+        ID: id
+    };
+    let obj = JSON.stringify(object)
+    $.ajax({
+        type: 'POST',
+        url: '/Basket_Consist/DeleteConfirmed',
+        contentType: 'application/json; charset=utf-8',
+        data: obj,
+        success: function (data) {
+            $(".sureDelete").removeAttr("id")
+            $("#DeleteProduct").modal("hide")
+            location.reload();
+        },
+        error: function (data) {
+            alert(data.responseText);
+        }
+    });
+   
+}

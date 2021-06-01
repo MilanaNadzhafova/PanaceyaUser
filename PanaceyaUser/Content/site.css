@@ -246,12 +246,14 @@ a img {
     .InputForValidation::-webkit-input-placeholder {
         color: #606060 !important;
     }
+.fsz{
+    font-size: 2rem;
+}
 
-    .InputForValidation:focus {
-        background: #F8ECEB !important;
-        border: 1.5px solid #959595 !important;
-        
-    }
+.InputForValidation:focus {
+    background: #FFFFFF !important;
+    border: 1.5px solid #959595 !important;
+}
 #exampleModalCenter.modal-header {
     border-bottom: 2px solid white !important;
     padding: 1rem 1rem 1rem 30% !important;
@@ -525,14 +527,33 @@ sub {
 sup {
     top: -0.5em;
 }
+.price {
+    color: #6F0000;
+    font-weight: bold;
+}
 
+.down{
+    margin-bottom: 1rem;
+    padding: 0.8rem 1rem 0 1rem;
+    font-size: 1rem;
+}
+
+.linebottom{
+    
+    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.25);
+}
 .med {
     width: 80%;
     border-radius: 30px;
-    
+}
+.med:hover {
+    opacity: 0.5;
+    transition: 1s;
 }
 .name{
-    margin-bottom: 4rem;
+   font-weight: 600;
+   font-size: 1rem;
+   margin-top: 1rem;
 }
 
 a {
@@ -2555,8 +2576,8 @@ pre {
             padding: 7.4rem 0;
         }
 
-        #using {
-            padding: 10rem 0 6rem 0;
+        #catalog {
+            padding: 7rem 0 6rem 0;
         }
     }
 #copyright {
@@ -6832,7 +6853,7 @@ pre {
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: transparent; /* цвет хуйни ездилки брат БЕРЕГИСЬ ОНИ ЗА ТОБОЙ ИДУТ */
+    background-color: bla; /* цвет хуйни ездилки брат БЕРЕГИСЬ ОНИ ЗА ТОБОЙ ИДУТ */
 }
     .modal-dialog-centered {
         display: flex;
@@ -11557,6 +11578,11 @@ pre {
         margin-bottom: 5.5rem;
     }
 
+#catalog h2.section-heading {
+    
+    margin-bottom: 3.5rem !important;
+}
+    
     #data h2.section-heading {
         margin-bottom: 8.5rem;
     }
@@ -11780,8 +11806,8 @@ pre {
         margin: 0;
     }
 
-    #using {
-        background-image: url("../images/section-1-bg.png ");
+    #catalog {
+        background-image: url("../images/CatalogFon.png");
         background-repeat: no-repeat;
         background-attachment: scroll;
         background-position: center center;
@@ -11890,7 +11916,7 @@ pre {
         #actuality h2.section-heading,
         #advantages h2.section-heading,
         #measurements h2.section-heading,
-        #using h2.section-heading, #contact h2.section-heading, #data h2.section-heading, #contact h2.section-heading {
+        #catalog h2.section-heading, #contact h2.section-heading, #data h2.section-heading, #contact h2.section-heading {
             font-size: 2rem;
         }
 
@@ -11912,7 +11938,7 @@ pre {
         #actuality h2.section-heading,
         #advantages h2.section-heading,
         #measurements h2.section-heading,
-        #using h2.section-heading, #contact h2.section-heading, #data h2.section-heading {
+        #catalog h2.section-heading, #contact h2.section-heading, #data h2.section-heading {
             font-size: 1.8rem;
         }
     }
@@ -11923,14 +11949,19 @@ pre {
         #actuality h2.section-heading,
         #advantages h2.section-heading,
         #measurements h2.section-heading,
-        #using h2.section-heading, #contact h2.section-heading, #data h2.section-heading {
+        #catalog h2.section-heading, #contact h2.section-heading, #data h2.section-heading {
             font-size: 1.6rem;
         }
-
-        #measurements h2.section-heading {
-            margin: 2rem;
-        }
-
+            #catalog h2.section-heading{
+                margin-top: 3rem;
+                margin-bottom: 3rem !important;
+            }
+            #measurements h2.section-heading {
+                margin: 2rem;
+            }
+                .down{
+                    font-size: 0.95rem;
+                }
         .lrgr address {
             font-size: 0.8rem;
         }
@@ -12168,7 +12199,10 @@ pre {
             margin-top: 1rem;
             margin-bottom: 3rem;
         }
-
+        #catalog p{
+            margin-top: 1rem;
+            margin-bottom: 1rem !important;
+        }
         #advantages h2.section-heading {
             margin-left: 2.75rem;
             margin-right: 2.75rem;

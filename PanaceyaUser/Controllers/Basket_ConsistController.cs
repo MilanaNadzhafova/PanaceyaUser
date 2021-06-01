@@ -71,13 +71,13 @@ namespace PanaceyaUser.Controllers
                     item.Amount += amount;
                     item.Price += endPrice;
                     db.SaveChanges();
-                    var medicine = db.Medicines.Where(p => p.ID_Medicine == IDMedicines).FirstOrDefault();
-                    medicine.Amount -= amount;
-                    if (medicine.Amount == 0)
-                    {
-                        medicine.Presence = false;
-                    }
-                    db.SaveChanges();
+                    //var medicine = db.Medicines.Where(p => p.ID_Medicine == IDMedicines).FirstOrDefault();
+                    //medicine.Amount -= amount;
+                    //if (medicine.Amount == 0)
+                    //{
+                    //    medicine.Presence = false;
+                    //}
+                    //db.SaveChanges();
 
                 }
                 else
@@ -85,13 +85,13 @@ namespace PanaceyaUser.Controllers
                     Basket_Consist basket = new Basket_Consist { ID_Basket = idBasket, ID_Medicines = IDMedicines, Amount = amount, Price = endPrice };
                     db.Basket_Consist.Add(basket);
                     db.SaveChanges();
-                    var medicine = db.Medicines.Where(p => p.ID_Medicine == IDMedicines).FirstOrDefault();
-                    medicine.Amount -= amount;
-                    if (medicine.Amount == 0)
-                    {
-                        medicine.Presence = false;
-                    }
-                    db.SaveChanges();
+                    //var medicine = db.Medicines.Where(p => p.ID_Medicine == IDMedicines).FirstOrDefault();
+                    //medicine.Amount -= amount;
+                    //if (medicine.Amount == 0)
+                    //{
+                    //    medicine.Presence = false;
+                    //}
+                    //db.SaveChanges();
                 }
             }
             return Json(new { Presence });
@@ -135,29 +135,33 @@ namespace PanaceyaUser.Controllers
         }
 
         // GET: Basket_Consist/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Basket_Consist basket_Consist = db.Basket_Consist.Find(id);
-            if (basket_Consist == null)
-            {
-                return HttpNotFound();
-            }
-            return View(basket_Consist);
-        }
+        //public ActionResult Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Basket_Consist basket_Consist = db.Basket_Consist.Find(id);
+        //    if (basket_Consist == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(basket_Consist);
+        //}
 
         // POST: Basket_Consist/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        [HttpPost]
+        public void DeleteConfirmed(string ID)
         {
-            Basket_Consist basket_Consist = db.Basket_Consist.Find(id);
+            int id = Convert.ToInt32(ID);
+            Basket_Consist basket_Consist = db.Basket_Consist.Where(p => p.ID_Consist == id).FirstOrDefault();
+            int IdMedicine = basket_Consist.ID_Medicines;
+            int Amount = basket_Consist.Amount;
             db.Basket_Consist.Remove(basket_Consist);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            Medicines medicines = db.Medicines.Where(p => p.ID_Medicine == IdMedicine).FirstOrDefault();
+            medicines.Amount += Amount;
+            db.SaveChanges();
         }
 
         protected override void Dispose(bool disposing)

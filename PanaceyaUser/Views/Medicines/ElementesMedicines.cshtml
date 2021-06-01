@@ -2,24 +2,27 @@
 
 @if (Model != null)
 {
-    <div class="row d-flex justify-content-between" >
+    <div class="row d-flex linebottom mb-4">
         @foreach (var item in Model)
         {
 
-            <div class="col-lg-4 col-md-6 text-center ">
-                <p class="">
+            <div class="col-lg-4 col-md-6 text-center mt-2">
+                <p class="name ">
                     @Html.DisplayFor(modelItem => item.Name)
                 </p>
 
                 <a href='@Url.Action("Details", new { id = item.ID_Medicine })' class="item-hover"><img class="med" src="~/images/@Html.DisplayFor(modelItem => item.Photo)" /></a>
 
-                <p class="down">
-                    Цена:
-                    <span class="price"> @Html.DisplayFor(modelItem => item.Price) руб.</span>
+                <p class="down d-flex justify-content-between">
+                    <span class="">
+                        Цена:
+                        <span class="price"> @Html.DisplayFor(modelItem => item.Price) руб.</span>
+                    </span>
+                   
                     <span>
                         @if (item.Presence == true)
                         {
-                            <span class="yes"> В наличии</span>
+                            <span class="yes">В наличии</span>
                         }
                         else
                         {
@@ -29,8 +32,10 @@
                 </p>
 
 
-
+                @*<hr class="linebottom"/>*@
             </div>
+
         }
+
     </div>
 }

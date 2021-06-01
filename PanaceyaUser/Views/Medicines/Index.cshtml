@@ -3,21 +3,21 @@
 @{
     ViewBag.Title = "Index";
 }
-<section class="page-section " id="using">
+<section class="page-section " id="catalog">
     <div class="container">
         <div class="text-center">
-            <h2 class="section-heading">Сценарий использования</h2>
+            <h2 class="section-heading">Каталог товаров</h2>
         </div>
-        <div class="form-group row row-cols-md-2 d-flex align-content-center justify-content-center" >
+        <div class="form-group row row-cols-md-2 d-flex align-content-center ">
             <div class="col-lg-3 col-md-6 mb-3 mb-md-0">
                 @Html.DropDownList("ID_Category", null, htmlAttributes: new { @class = "form-control DropCategories" })
-                
+
             </div>
             @*<div class="col-lg-3 col-md-6"><input class="form-control" type="text" /></div>*@
         </div>
         @{string id = "2"; }
         <div class="container" id="ElementsMed">
-            @Html.Action("ElementesMedicines",new {id=id})
+            @Html.Action("ElementesMedicines", new { id = id })
         </div>
     </div>
 
