@@ -247,7 +247,10 @@ a img {
         color: #606060 !important;
     }
 .fsz{
-    font-size: 2rem;
+    font-size: 2.7rem;
+    padding: 0.5rem 0;
+    padding-right: 1rem;
+
 }
 
 .InputForValidation:focus {
@@ -262,7 +265,7 @@ a img {
     display: inline-block !important;
     width: 80% !important;
 }
-.LoginBtn, .LoginReg {
+.LoginBtn, .LoginReg, .btnAdd{
     
     border-radius: 20px;
     
@@ -284,6 +287,18 @@ a img {
         border: 0.2px solid black !important;
         transition: 1s;
     }
+.btnAdd:hover {
+    background-color: #161616;
+    border: 0.2px solid black !important;
+    transition: 1s;
+}
+.btnAdd {
+    padding: 15px;
+    width: 25%;
+}
+.mt-my{
+    margin-top: 1.5rem;
+}
     .LoginBtn {
         padding: 15px;
         width: 41%;
@@ -546,6 +561,21 @@ sup {
     width: 80%;
     border-radius: 30px;
 }
+.photomed {
+    width: 40%;
+    
+}
+
+.andprics {
+    font-weight: 500;
+    color: #FD9D7E;
+}
+
+.sect {
+    font-size: 1.8rem;
+    font-weight: lighter;
+}
+
 .med:hover {
     opacity: 0.5;
     transition: 1s;
@@ -9301,11 +9331,13 @@ pre {
     .py-5 {
         padding-top: 3rem !important;
     }
-
-    .pr-5,
-    .px-5 {
-        padding-right: 3rem !important;
-    }
+.source{
+    font-size: 1rem;
+}
+.pr-5,
+.px-5 {
+    padding-right: 3rem !important;
+}
 
     .pb-5,
     .py-5 {
@@ -9314,7 +9346,7 @@ pre {
 
     .pl-5,
     .px-5 {
-        padding-left: 3rem !important;
+        padding-left: 2.6rem !important;
     }
 
     .m-n1 {
@@ -12761,7 +12793,9 @@ section#contact {
         padding-left: 0 !important;
         padding-right: 0 !important;
     }
-
+    .glob{
+        font-size: 2.2rem;
+    }
     #mainNav .navbar-brand img {
         height: 3.6rem;
     }

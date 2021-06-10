@@ -20,10 +20,36 @@ namespace PanaceyaUser.Controllers
             int idUser = db.Users.Where(p => p.Email == User.Identity.Name).FirstOrDefault().ID_User;
             int idBasket = db.Baskets.Where(p => p.ID_User == idUser).FirstOrDefault().ID_Basket;
             var basket_Consist = db.Basket_Consist.Include(b => b.Baskets).Include(b => b.Medicines).Where(p => p.ID_Basket == idBasket);
-
+            ViewBag.IssuePoints = new SelectList(db.Pharmacies, "ID_Pharm", "Address");
+            ViewBag.PayMethod = new SelectList(db.Pay_Method, "ID_Pay", "Method");
             return View(basket_Consist.ToList());
         }
-       
+        public void CreateOrder(string pay, string point)
+        {
+            int idUser = db.Users.Where(p => p.Email == User.Identity.Name).FirstOrDefault().ID_User;
+            int idBasket = db.Baskets.Where(p => p.ID_User == idUser).FirstOrDefault().ID_Basket;
+            Orders order = new Orders { ID_Basket = idBasket, ID_Pay = Convert.ToInt32(pay), ID_Status = 1, ID_Pharm = Convert.ToInt32(point) };
+            db.Orders.Add(order);
+            db.SaveChanges();
+            db.Basket_Consist.RemoveRange(db.Basket_Consist.Where(x => x.ID_Basket == idBasket));
+            db.SaveChanges();
+
+        }
+
+        public ActionResult ChangeElement(string idMed, string amount)
+        {
+            int IDMed = Convert.ToInt32(idMed);
+            int Amount = Convert.ToInt32(amount);
+            decimal priceOne = db.Medicines.Where(p => p.ID_Medicine == IDMed).FirstOrDefault().Price;
+            decimal newPrice = priceOne * Amount;
+            int idUser = db.Users.Where(p => p.Email == User.Identity.Name).FirstOrDefault().ID_User;
+            int idBasket = db.Baskets.Where(p => p.ID_User == idUser).FirstOrDefault().ID_Basket;
+            var row = db.Basket_Consist.Where(p => p.ID_Basket == idBasket && p.ID_Medicines == IDMed).FirstOrDefault();
+            row.Price = newPrice;
+            row.Amount = Amount;
+            db.SaveChanges();
+            return Json(new { newPrice});
+        }
 
         // GET: Basket_Consist/Details/5
         public ActionResult Details(int? id)
@@ -55,7 +81,7 @@ namespace PanaceyaUser.Controllers
         public ActionResult Create(string idMedicines, string Amount, string Price)
         {
             int IDMedicines = Convert.ToInt32(idMedicines);
-
+            int AcceptableAmount =0;
             bool Presence = db.Medicines.Where(p => p.ID_Medicine == IDMedicines).FirstOrDefault().Presence;
             if(Presence)
             {
@@ -65,9 +91,18 @@ namespace PanaceyaUser.Controllers
                 int id = db.Users.Where(p => p.Email == User.Identity.Name).FirstOrDefault().ID_User;
                 int idBasket = db.Baskets.Where(p => p.ID_User == id).FirstOrDefault().ID_Basket;
                 var item = db.Basket_Consist.Where(p => p.ID_Basket == idBasket && p.ID_Medicines == IDMedicines).FirstOrDefault();
-
+                
                 if (item != null)
                 {
+                    int MaxAmount = db.Medicines.Where(p => p.ID_Medicine == item.ID_Medicines).FirstOrDefault().Amount;
+                    int LimitAmount = amount + item.Amount;
+                    if(LimitAmount > MaxAmount)
+                    {
+                        AcceptableAmount = LimitAmount - MaxAmount;
+                        AcceptableAmount = amount - AcceptableAmount;
+                        return Json(new { Presence, AcceptableAmount});
+
+                    }
                     item.Amount += amount;
                     item.Price += endPrice;
                     db.SaveChanges();
@@ -94,7 +129,7 @@ namespace PanaceyaUser.Controllers
                     //db.SaveChanges();
                 }
             }
-            return Json(new { Presence });
+            return Json(new { Presence, AcceptableAmount});
 
         }
 
@@ -159,9 +194,7 @@ namespace PanaceyaUser.Controllers
             int Amount = basket_Consist.Amount;
             db.Basket_Consist.Remove(basket_Consist);
             db.SaveChanges();
-            Medicines medicines = db.Medicines.Where(p => p.ID_Medicine == IdMedicine).FirstOrDefault();
-            medicines.Amount += Amount;
-            db.SaveChanges();
+          
         }
 
         protected override void Dispose(bool disposing)

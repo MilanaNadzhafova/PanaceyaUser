@@ -256,6 +256,7 @@
     </Content>
     <Content Include="Scripts\contact_me.js" />
     <Content Include="Scripts\datepicker.js" />
+    <Content Include="Scripts\forBasket.js" />
     <Content Include="Scripts\forCategories.js" />
     <Content Include="Scripts\forMedicines.js" />
     <Content Include="Scripts\i18n\datepicker.cs.js" />

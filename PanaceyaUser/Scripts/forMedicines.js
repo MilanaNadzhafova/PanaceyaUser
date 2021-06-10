@@ -52,7 +52,13 @@ function AddInBasket() {
                     success: function (data) {
                         //if (data.check) { window.location.href = "" }
                         if (data.Presence) {
-                            $('#ModalOfBasket').modal('show');
+                            if (data.AcceptableAmount === 0) {
+                                $('#ModalOfBasket').modal('show');
+                            }
+                            else {
+                                $('#limit').text(data.AcceptableAmount) 
+                                $('#ModalLimit').modal('show');
+                            }
                         }
                         else {
                             $('#ModalOfError').modal('show');

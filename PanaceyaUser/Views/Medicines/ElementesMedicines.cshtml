@@ -18,15 +18,17 @@
                         Цена:
                         <span class="price"> @Html.DisplayFor(modelItem => item.Price) руб.</span>
                     </span>
-                   
+
                     <span>
                         @if (item.Presence == true)
                         {
-                            <span class="yes">В наличии</span>
+                            <span class="yes"><b> В наличии</b></span>
                         }
                         else
                         {
-                            <span class="no">Не в наличии</span>
+                            <span class="no">
+                                <b>Не в наличии</b>
+                            </span>
                         }
                     </span>
                 </p>

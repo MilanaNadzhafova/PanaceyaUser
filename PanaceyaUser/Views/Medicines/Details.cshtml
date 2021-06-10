@@ -26,15 +26,71 @@
 
 
         }
-        <div class="row text-center">
-            <i class="fas fa-arrow-left fsz"></i>
-            <h2> @Html.DisplayFor(model => model.Name)</h2>
+        <div class="linebottom">
+            <div class="row justify-content-center">
+                <a class="js-scroll-trigger mt-3" " href="~/Medicines/Index" target="_self">
+                    <i class="fas fa-arrow-left fsz"></i>
+                </a>
+                <div class="text-center mb-1 mt-3">
+                    <h2 class="glob"> @Html.DisplayFor(model => model.Name)</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <img class="photomed" src="~/images/@Html.DisplayFor(model => model.Photo)" />
+                </div>
+
+                <div class="col-6 mb-4 text-right sect">
+                    <span class="">
+                        Цена:&nbsp;
+                        <span class="price andprics"> @Html.DisplayFor(model => model.Price) руб.</span>
+                    </span>
+                </div>
+                <div class="col-6 mb-4 text-left sect">
+                    Наличие:&nbsp;
+                    <span>
+                        @if (Model.Presence == true)
+                        {
+                            <span class="yes font-weight-bold">В наличии</span>
+                        }
+                        else
+                        {
+                            <span class="no font-weight-bold">Не в наличии</span>
+                        }
+                    </span>
+                </div>
+                <div class="col-7 sect text-right">
+                    <span>Количество штук:</span>
+                </div>
+                <div class="col-1">
+
+                    @Html.DropDownList("AmountList", list, htmlAttributes: new { @class = "form-control DropAmount" })
+                </div>
+
+
+
+            </div>
+            <div class="d-flex justify-content-center mt-my">
+                <button class="btnAdd" onclick="AddInBasket()">Добавить в корзину</button>
+
+            </div>
+            <div class="text-center mt-4 font-weight-bold source">
+                <span>Описание</span>
+
+            </div>
+            <div class="pl-5">
+                @Html.DisplayFor(model => model.Description)
+
+            </div>
         </div>
+
+
+
+
         <span id="idMedicine" class="d-none">@Model.ID_Medicine</span>
-        <button class="btn" onclick="AddInBasket()">Добавить в корзину</button>
 
         <dl class="dl-horizontal">
-        
+
 
             <dt>
                 @Html.DisplayNameFor(model => model.Description)
@@ -54,7 +110,6 @@
             </dd>
 
             <dt>
-                @Html.DropDownList("AmountList", list, htmlAttributes: new { @class = "form-control DropAmount" })
             </dt>
 
 
@@ -72,7 +127,7 @@
             </dt>
 
             <dd>
-                <img class="med" src="~/images/@Html.DisplayFor(model => model.Photo)" /><
+
             </dd>
 
             <dt>
@@ -84,6 +139,26 @@
             </dd>
 
         </dl>
+    </div>
+    <div id="ModalLimit" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header text-center CompleteReg" style="color:white!important">
+                    <button type="button" class="close" data-dismiss="modal" style="outline:none!important" aria-label="Close">
+                        <span aria-hidden="true" style="color: black !important; font-size: 2rem">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Максимальное количество товара, которое вы можете добавить:
+                        <span id="limit"></span>
+                    </p>
+                    <button class="btn LoginBtn">Перейти к корзине</button>
+
+                </div>
+
+            </div>
+        </div>
     </div>
 </section>
 <p>
