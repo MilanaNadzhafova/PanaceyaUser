@@ -28,7 +28,8 @@
             </th>
             <th></th>
         </tr>
-        @{ decimal AllPrice = 0;}
+        @{
+            decimal AllPrice = 0;}
         @foreach (var item in Model)
         {
             <tr>
@@ -85,11 +86,23 @@
                         @Html.ActionLink("Delete", "Delete", new { id = item.ID_Consist })
                     </td>*@
             </tr>
-                        }
+        }
 
     </table>
-  
-    <span>Общая сумма: </span> <span id="ForAllPrice">@{if (AllPrice!=0) { AllPrice.ToString().Remove(AllPrice.ToString().Length - 5, 5); } else { <span>0</span> } } </span> <span> руб.</span>
+    @{
+        string EndPrice;
+        if (AllPrice != 0)
+        {
+            EndPrice = AllPrice.ToString().Remove(AllPrice.ToString().Length - 5, 5);
+        }
+        else
+        {
+            EndPrice = "0";
+        }
+
+    }
+
+    <span>Общая сумма: </span> <span id="ForAllPrice"> @EndPrice</span> <span> руб.</span>
     @Html.DropDownList("IssuePoints", null, htmlAttributes: new { @class = "form-control", @id = "DropIssuePoints" })
     @Html.DropDownList("PayMethod", null, htmlAttributes: new { @class = "form-control", @id = "DropPayMethod" })
     <button class="btn btn-outline-success" onclick="AddOrder()">Оформить заказ</button>

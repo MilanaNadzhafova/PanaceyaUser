@@ -553,8 +553,13 @@ sup {
     font-size: 1rem;
 }
 
-.linebottom{
-    
+.forzag{
+    font-size: 1.4rem;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.linebottom {
     box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.25);
 }
 .med {
@@ -9347,6 +9352,8 @@ pre {
     .pl-5,
     .px-5 {
         padding-left: 2.6rem !important;
+        padding-right: 2.6rem !important;
+        padding-bottom: 2.6rem !important;
     }
 
     .m-n1 {
@@ -11810,22 +11817,28 @@ pre {
         background-size: cover;
     }
 
-    .fon {
-        background-image: url("../images/backforsec.png");
-        background-repeat: no-repeat;
-        background-attachment: scroll;
-        background-position: center left;
-        background-size: cover;
-    }
+.fon {
+    background-image: url("../images/backforsec.png");
+    background-repeat: repeat-y;
+    background-attachment: scroll;
+    background-position: center left;
+    background-size: cover;
+}
 
-
-    #data {
-        background-image: url("../images/data-bg.png ");
-        background-repeat: no-repeat;
-        background-attachment: scroll;
-        background-position: center center;
-        background-size: cover;
-    }
+#catalogInfo {
+    background-image: url("../images/catalogIngo.png");
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: center left;
+    background-size: cover;
+}
+#data {
+    background-image: url("../images/data-bg.png ");
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: center center;
+    background-size: cover;
+}
 
     .border-data {
         border: 2px solid #E0E0E0;

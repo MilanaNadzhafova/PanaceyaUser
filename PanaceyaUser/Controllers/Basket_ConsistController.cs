@@ -4,8 +4,15 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using iText.Kernel.Colors;
+using iText.Kernel.Font;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
 using PanaceyaUser.Models;
 
 namespace PanaceyaUser.Controllers
@@ -28,12 +35,112 @@ namespace PanaceyaUser.Controllers
         {
             int idUser = db.Users.Where(p => p.Email == User.Identity.Name).FirstOrDefault().ID_User;
             int idBasket = db.Baskets.Where(p => p.ID_User == idUser).FirstOrDefault().ID_Basket;
+            PDFCreate(idBasket);
             Orders order = new Orders { ID_Basket = idBasket, ID_Pay = Convert.ToInt32(pay), ID_Status = 1, ID_Pharm = Convert.ToInt32(point) };
             db.Orders.Add(order);
             db.SaveChanges();
             db.Basket_Consist.RemoveRange(db.Basket_Consist.Where(x => x.ID_Basket == idBasket));
             db.SaveChanges();
+            string path = Server.MapPath(Url.Content("~/Content/PDF/Consist.pdf"));
+            SendEmailAsync(db.Users.Where(p=>p.Email == User.Identity.Name).FirstOrDefault().Email, path);
+        }
+        private  void SendEmailAsync(string Email, string path) // Метод для отправки сообщения и PDF-файла с содержимым заказа на почту клиенту
+        {
+            try
+            {
 
+
+                MailAddress from = new MailAddress("mnadgafova47@gmail.com", "online-apteka 'Panaceya'");
+                MailAddress to = new MailAddress(Email);
+                MailMessage m = new MailMessage(from, to);
+                m.Subject = "Ваш заказ оформлен";
+                m.Body = $"Ваш заказ оформлен, как только он будет готов, вам придет сообщение!";
+                m.Attachments.Add(new Attachment(path));
+
+                m.IsBodyHtml = true;
+                SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+                smtp.EnableSsl = true;
+                smtp.Credentials = new NetworkCredential("mnadgafova47@gmail.com", "3211q1q1q");
+                 smtp.Send(m);
+            }
+            catch(Exception ex)
+            {
+
+            }
+        }
+        private void PDFCreate(int idBasket) // Метод для формирования PDF-фвйла с содержимым заказа
+        {
+            try
+            {
+                var basket_Consist = db.Basket_Consist.Include(b => b.Baskets).Include(b => b.Medicines).Where(p => p.ID_Basket == idBasket);
+
+               
+                DataTable tableConsist = new DataTable();
+                tableConsist.Columns.Add("Name");
+                tableConsist.Columns.Add("Amount");
+                tableConsist.Columns.Add("Price");
+                decimal Price = 0;
+                foreach (var item in basket_Consist)
+                {
+                    Price += item.Price;
+                    DataRow row = tableConsist.NewRow();
+                    row["Name"] = item.Medicines.Name;
+                    row["Amount"] = item.Amount;
+                    row["Price"] = item.Price;
+                    tableConsist.Rows.Add(row);
+
+                }
+                string dest = Server.MapPath(Url.Content("~/Content/PDF/Consist.pdf"));
+                PdfWriter writer = new PdfWriter(dest);
+                PdfDocument pdfDoc = new PdfDocument(writer);
+                Document document = new Document(pdfDoc);
+                Table table = new Table(tableConsist.Columns.Count);
+                PdfFont russian = PdfFontFactory.CreateFont(Server.MapPath(Url.Content("~/Content/Font/Arial.ttf")), "CP1251", true);
+                document.SetFont(russian);
+                table.SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER);
+                table.SetFontColor(new DeviceRgb(0, 0, 0));
+                iText.Kernel.Colors.Color color = new DeviceRgb(255, 178, 204);
+                CreateCell(table, "Название", 200, color);
+                CreateCell(table, "Количество", 100, color);
+                CreateCell(table, "Цена, руб", 100, color);
+
+                for (int i = 0; i < tableConsist.Rows.Count; i++)
+                {
+                    for (int j = 0; j < tableConsist.Columns.Count; j++)
+                    {
+                        Cell cell = new Cell();
+                        if (j == 2) cell.Add(new Paragraph(Convert.ToDecimal(tableConsist.Rows[i][j]).ToString().Remove(tableConsist.Rows[i][j].ToString().Length - 5, 5)));
+
+                        else cell.Add(new Paragraph(tableConsist.Rows[i][j].ToString()));
+                        cell.SetBackgroundColor(new DeviceRgb(255, 231, 244));
+                        cell.SetFontSize(7);
+                        table.AddCell(cell);
+                    }
+                }
+                iText.Layout.Element.Paragraph price = new Paragraph("Итого: " + " " + Price.ToString().Remove(Price.ToString().Length-5,5)+" руб.");
+                document.Add(table);
+                document.Add(price);
+                document.Close();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+
+            }
+        }
+
+
+        private void CreateCell(Table table, string str, float widthCell, iText.Kernel.Colors.Color bgColor)
+        {
+            Cell cell1 = new Cell();
+            cell1.Add(new Paragraph(str));
+            cell1.SetWidth(widthCell);
+            cell1.SetFontSize(10);
+            cell1.SetBackgroundColor(bgColor);
+            table.AddCell(cell1);
         }
 
         public ActionResult ChangeElement(string idMed, string amount)
@@ -48,7 +155,7 @@ namespace PanaceyaUser.Controllers
             row.Price = newPrice;
             row.Amount = Amount;
             db.SaveChanges();
-            return Json(new { newPrice});
+            return Json(new { newPrice });
         }
 
         // GET: Basket_Consist/Details/5
@@ -81,9 +188,9 @@ namespace PanaceyaUser.Controllers
         public ActionResult Create(string idMedicines, string Amount, string Price)
         {
             int IDMedicines = Convert.ToInt32(idMedicines);
-            int AcceptableAmount =0;
+            int AcceptableAmount = 0;
             bool Presence = db.Medicines.Where(p => p.ID_Medicine == IDMedicines).FirstOrDefault().Presence;
-            if(Presence)
+            if (Presence)
             {
                 int amount = Convert.ToInt32(Amount);
                 decimal price = Convert.ToDecimal(Price);
@@ -91,16 +198,16 @@ namespace PanaceyaUser.Controllers
                 int id = db.Users.Where(p => p.Email == User.Identity.Name).FirstOrDefault().ID_User;
                 int idBasket = db.Baskets.Where(p => p.ID_User == id).FirstOrDefault().ID_Basket;
                 var item = db.Basket_Consist.Where(p => p.ID_Basket == idBasket && p.ID_Medicines == IDMedicines).FirstOrDefault();
-                
+
                 if (item != null)
                 {
                     int MaxAmount = db.Medicines.Where(p => p.ID_Medicine == item.ID_Medicines).FirstOrDefault().Amount;
                     int LimitAmount = amount + item.Amount;
-                    if(LimitAmount > MaxAmount)
+                    if (LimitAmount > MaxAmount)
                     {
                         AcceptableAmount = LimitAmount - MaxAmount;
                         AcceptableAmount = amount - AcceptableAmount;
-                        return Json(new { Presence, AcceptableAmount});
+                        return Json(new { Presence, AcceptableAmount });
 
                     }
                     item.Amount += amount;
@@ -129,7 +236,7 @@ namespace PanaceyaUser.Controllers
                     //db.SaveChanges();
                 }
             }
-            return Json(new { Presence, AcceptableAmount});
+            return Json(new { Presence, AcceptableAmount });
 
         }
 
@@ -194,7 +301,7 @@ namespace PanaceyaUser.Controllers
             int Amount = basket_Consist.Amount;
             db.Basket_Consist.Remove(basket_Consist);
             db.SaveChanges();
-          
+
         }
 
         protected override void Dispose(bool disposing)

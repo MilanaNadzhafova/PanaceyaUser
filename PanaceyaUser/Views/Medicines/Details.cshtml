@@ -5,7 +5,7 @@
 }
 
 
-<section>
+<section id="catalogInfo">
     <div class="container">
 
         @{
@@ -28,7 +28,7 @@
         }
         <div class="linebottom">
             <div class="row justify-content-center">
-                <a class="js-scroll-trigger mt-3" " href="~/Medicines/Index" target="_self">
+                <a class="js-scroll-trigger mt-3"  href="~/Medicines/Index" target="_self">
                     <i class="fas fa-arrow-left fsz"></i>
                 </a>
                 <div class="text-center mb-1 mt-3">
@@ -43,7 +43,7 @@
                 <div class="col-6 mb-4 text-right sect">
                     <span class="">
                         Цена:&nbsp;
-                        <span class="price andprics"> @Html.DisplayFor(model => model.Price) руб.</span>
+                        <span id="price" class=" andprics"> @Html.DisplayFor(model => model.Price) руб.</span>
                     </span>
                 </div>
                 <div class="col-6 mb-4 text-left sect">
@@ -75,7 +75,7 @@
 
             </div>
             <div class="text-center mt-4 font-weight-bold source">
-                <span>Описание</span>
+                <span class = "forzag">Описание</span>
 
             </div>
             <div class="pl-5">
@@ -89,56 +89,7 @@
 
         <span id="idMedicine" class="d-none">@Model.ID_Medicine</span>
 
-        <dl class="dl-horizontal">
-
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Description)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Description)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Price)
-            </dt>
-
-            <dd id="price">
-
-                @Html.DisplayFor(model => model.Price)
-            </dd>
-
-            <dt>
-            </dt>
-
-
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Presence)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Presence)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Photo)
-            </dt>
-
-            <dd>
-
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Categories.Name)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Categories.Name)
-            </dd>
-
-        </dl>
+      
     </div>
     <div id="ModalLimit" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm modal-dialog-centered">
@@ -161,7 +112,4 @@
         </div>
     </div>
 </section>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_Medicine }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
