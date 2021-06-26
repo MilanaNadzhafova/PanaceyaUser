@@ -15,8 +15,8 @@
         contentType: 'application/json; charset=utf-8',
         data: obj,
         success: function (data) {
-            
-            $(".DropAmount#" + idMedicine + "").next().next().text(data.newPrice)
+
+            $(".DropAmount#" + idMedicine + "").parent().parent().next().next().text(data.newPrice)
             let PricesMassive = $(".ForPrice");
             let AllPrice = 0;
             for (let i = 0; i < PricesMassive.length; i++) {
@@ -49,8 +49,9 @@ function AddOrder() {
             contentType: 'application/json; charset=utf-8',
             data: obj,
             success: function (data) {
-                alert("Успешно")
-                location.reload();
+                setTimeout(function () { window.location.reload(); }, 2500);
+                $("#AddInOrder").modal("show"); 
+
 
             },
             error: function (data) {

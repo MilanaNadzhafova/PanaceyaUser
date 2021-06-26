@@ -3,129 +3,185 @@
 @{
     ViewBag.Title = "Index";
 }
-<section>
-    <h2>Index</h2>
+<section id="basket">
+    <div class="container">
+        <div class="text-center mb-1 ">
+            <h2 class="section-heading glob mbbot">Ваша корзина</h2>
 
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Amount)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Medicines.Photo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Baskets.ID_Basket)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Medicines.Name)
-            </th>
-            <th></th>
-        </tr>
-        @{
-            decimal AllPrice = 0;}
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @{
+        </div>
+        <div class="linebottom">
 
-                        List<SelectListItem> list = new List<SelectListItem>();//Список значений для DDL
-                        List<SelectListItem> list2 = new List<SelectListItem>();//Список значений для DDL
 
-                        for (int i = 1; i <= item.Medicines.Amount; i++)
-                        {
-                            if (i == item.Amount)
-                            {
-                                list.Add(new SelectListItem() { Text = i.ToString(), Value = i.ToString(), Selected = true });//Заполняем его
-                            }
-                            else
-                            {
-                                list.Add(new SelectListItem() { Text = i.ToString(), Value = i.ToString(), Selected = false });//Заполняем его
-                            }
-
-                        }
+            @{
+                decimal AllPrice = 0;}
+            @foreach (var item in Model)
+            {
 
 
 
+                List<SelectListItem> list = new List<SelectListItem>();//Список значений для DDL
+                List<SelectListItem> list2 = new List<SelectListItem>();//Список значений для DDL
+
+                for (int i = 1; i <= item.Medicines.Amount; i++)
+                {
+                    if (i == item.Amount)
+                    {
+                        list.Add(new SelectListItem() { Text = i.ToString(), Value = i.ToString(), Selected = true });//Заполняем его
                     }
-                    @Html.DropDownList("AmountList", list, htmlAttributes: new { @class = "form-control DropAmount", @id = @Html.DisplayFor(modelItem => item.ID_Medicines) })
-                    <br />
-                    @{ string price = @Html.DisplayFor(modelItem => item.Price).ToString();
-                        AllPrice += Convert.ToDecimal(item.Price);
+                    else
+                    {
+                        list.Add(new SelectListItem() { Text = i.ToString(), Value = i.ToString(), Selected = false });//Заполняем его
                     }
-                    <span class="ForPrice"> @price.Remove(price.Length - 3, 3)</span> <span> руб.</span>
+
+                }
 
 
-                </td>
-                <td>
-                    <img src="~/images/@Html.DisplayFor(modelItem => item.Medicines.Photo)" />
 
-                </td>
-                <td>
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Baskets.ID_Basket)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Medicines.Name)
-                    <button class="btn btn-primary btnDelete" id="@Html.DisplayFor(m => item.ID_Consist)" onclick="DeleteProduct(this)">удалить</button>
-                    @*@Html.ActionLink("Delete", "Delete", new { id = item.ID_Consist }, htmlAttributes: new { @class = "btn btn-primary btnDelete" })*@
 
-                </td>
+
+
+                @*@Html.DisplayFor(modelItem => item.Baskets.ID_Basket)*@
+
+                @*@Html.ActionLink("Delete", "Delete", new { id = item.ID_Consist }, htmlAttributes: new { @class = "btn btn-primary btnDelete" })*@
+
+
 
                 @*<td>
                         @Html.ActionLink("Edit", "Edit", new { id = item.ID_Consist }) |
                         @Html.ActionLink("Details", "Details", new { id = item.ID_Consist }) |
                         @Html.ActionLink("Delete", "Delete", new { id = item.ID_Consist })
                     </td>*@
-            </tr>
-        }
 
-    </table>
-    @{
-        string EndPrice;
-        if (AllPrice != 0)
-        {
-            EndPrice = AllPrice.ToString().Remove(AllPrice.ToString().Length - 5, 5);
-        }
-        else
-        {
-            EndPrice = "0";
-        }
 
-    }
+                <div class="row pt-4">
+                    <div class="col-6">
+                        <img class="photobask" src="~/images/@Html.DisplayFor(modelItem => item.Medicines.Photo)" />
 
-    <span>Общая сумма: </span> <span id="ForAllPrice"> @EndPrice</span> <span> руб.</span>
-    @Html.DropDownList("IssuePoints", null, htmlAttributes: new { @class = "form-control", @id = "DropIssuePoints" })
-    @Html.DropDownList("PayMethod", null, htmlAttributes: new { @class = "form-control", @id = "DropPayMethod" })
-    <button class="btn btn-outline-success" onclick="AddOrder()">Оформить заказ</button>
+                    </div>
+                    @{ string price = @Html.DisplayFor(modelItem => item.Price).ToString();
+                        AllPrice += Convert.ToDecimal(item.Price);
+                    }
+                    <div class="col-6 mttop">
+                        <span class="nameBask">@Html.DisplayFor(modelItem => item.Medicines.Name)</span>
+                        <div class="row">
+                            <div class="col-4">
+                                <span class="mtsh nameBask">Количество:</span>
+                            </div>
+                            <div class="col-7">
+                                @Html.DropDownList("AmountList", list, htmlAttributes: new { @class = "form-control DropAmount", @id = @Html.DisplayFor(modelItem => item.ID_Medicines) })
 
+                            </div>
+
+                        </div>
+
+                        <span class="prices mr-3">Цена:</span>
+
+                        <span class="ForPrice prices"> @price.Remove(price.Length - 3, 3)</span> <span class="prices "> руб.</span>
+
+                    </div>
+
+                    @*<div class="col-6 offset-6">
+                            @Html.DisplayFor(modelItem => item.Medicines.Name)
+
+                        </div>*@
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button class="btnDelete mbbot btnAdd" id="@Html.DisplayFor(m => item.ID_Consist)" onclick="DeleteProduct(this)">Удалить из корзины</button>
+
+                </div>
+                <hr class="line" />
+
+            }
+            @{
+                string EndPrice;
+                if (AllPrice != 0)
+                {
+                    EndPrice = AllPrice.ToString().Remove(AllPrice.ToString().Length - 5, 5);
+                }
+                else
+                {
+                    EndPrice = "0";
+                }
+
+            }
+            <div class="text-center prices">
+                <span class="mr-3">Общая стоимость заказа: </span>
+                <span id="ForAllPrice" class=" colred"> @EndPrice</span>
+                <span class="colred"> руб.</span>
+            </div>
+
+            <hr class="line" />
+            <div class="row prices">
+                <div class="col-12 text-center mttop mb-2">
+                    <span> Выберите точку выдачи заказа: </span>
+
+                </div>
+                <div class="col-5 offset-3 offset-sm-4 text-center mb-2">
+                    <div class="ml-5 mr-5">
+                        @Html.DropDownList("IssuePoints", null, htmlAttributes: new { @class = "form-control", @id = "DropIssuePoints" })
+
+                    </div>
+
+                </div>
+                <div class="col-12 text-center mb-2">
+                    <span> Выберите способ оплаты заказа: </span>
+
+                </div>
+                <div class="col-5 offset-3 offset-sm-4 text-center mb-2">
+                    <div class="ml-5 mr-5">
+                        @Html.DropDownList("PayMethod", null, htmlAttributes: new { @class = "form-control", @id = "DropPayMethod" })
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-center mttop pb-4">
+                <button class="btnAdd " onclick="AddOrder()">Оформить заказ</button>
+
+            </div>
+
+
+        </div>
+    </div>
 
     <div id="DeleteProduct" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header text-center CompleteReg" style="color:white!important">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Удаление товара</h5>
+                    <button type="button" class="close" data-dismiss="modal" style="outline:none!important" aria-label="Close">
+                        <span aria-hidden="true" style="color: black !important; font-size: 2rem">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <span class="mb-2 d-block">Вы действительно хотите удалить этот товар?</span>
+                    <div class="row justify-content-around">
+                        <div class="col-5">
+                            <button class="btnWidth btnDelete sureDelete" onclick="EndDelete(this)">Удалить</button>
+                        </div>
+                        <div class="col-5">
+                            <button class="btnWidth" onclick="CancelDelete()">Отмена</button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="AddInOrder" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header text-center CompleteReg" style="color:white!important">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Оформление заказа</h5>
                     <button type="button" class="close" data-dismiss="modal" style="outline:none!important" aria-label="Close">
                         <span aria-hidden="true" style="color: black !important; font-size: 2rem">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>Вы действительно хотите удалить этот товар?</p>
-                    <div class="row">
-                        <div class="col-4">
-                            <button class="btn btn-primary sureDelete" onclick="EndDelete(this)">Удалить</button>
-                        </div>
-                        <div class="col-4">
-                            <button class="btn btn-primary" onclick="CancelDelete()">Отмена</button>
-                        </div>
-                    </div>
+                    <span class="mb-2 d-block">Ваш заказ успешно оформлен!</span>
                 </div>
 
 

@@ -265,7 +265,7 @@ a img {
     display: inline-block !important;
     width: 80% !important;
 }
-.LoginBtn, .LoginReg, .btnAdd{
+.LoginBtn, .LoginReg, .btnAdd, .btnBasket, .btnWidth{
     
     border-radius: 20px;
     
@@ -277,17 +277,38 @@ a img {
     filter: drop-shadow( 0px 4px 4px rgba(0, 0, 0, 0.25));
     outline: none !important;
 }
-    .LoginReg:hover {
-        background-color: #161616;
-        border: 0.2px solid #FFFFFF !important;
-        transition: 1s;
-    }
+.btnDelete {
+    background-color: #C95B56;
+}
+.btnWidth{
+    width: 100% !important;
+    border-radius: 10px !important;
+}
+.LoginReg:hover {
+    background-color: #161616;
+    border: 0.2px solid #FFFFFF !important;
+    transition: 1s;
+}
     .LoginBtn:hover {
         background-color: #161616;
         border: 0.2px solid black !important;
         transition: 1s;
     }
 .btnAdd:hover {
+    background-color: #161616;
+    border: 0.2px solid black !important;
+    transition: 1s;
+}
+.btnBasket:hover {
+    background-color: #161616;
+    border: 0.2px solid black !important;
+    transition: 1s;
+}
+.btnDelete:hover {
+    background-color: #AC4844;
+    border: 0.2px solid black !important;
+    transition: 1s;
+}.btnWidth:hover {
     background-color: #161616;
     border: 0.2px solid black !important;
     transition: 1s;
@@ -569,6 +590,13 @@ sup {
 .photomed {
     width: 40%;
     
+}
+.photobask {
+    width: 80%;
+    
+}
+.mttop{
+    margin-top: 1.5rem;
 }
 
 .andprics {
@@ -1048,13 +1076,201 @@ pre {
 #advantages .container-fluid {
     padding: 0;
 }
+@media (min-width: 376px) and (max-width:429px) {
 
+    .mtsh {
+        display: block;
+        margin-top: 0.3rem;
+    }
+    .myDec{
+        font-size: 0.8rem!important;
+    }
 
+    .fsz {
+        font-size: 1.2rem;
+        padding: 0 !important;
+        padding-bottom: 6px !important;
+    }
+
+    .linebottom {
+        margin-top: 6rem;
+        margin-bottom: 3rem;
+    }
+
+    .sect {
+        font-size: 0.8rem;
+        padding-left: 0 !important;
+    }
+
+    .DropAmount {
+        font-size: 0.7rem !important;
+    }
+    .forzag{
+        font-size: 0.9rem !important;
+    }
+    .btnAdd {
+        width: 50%;
+        font-size: 0.8rem;
+        padding: 10px;
+    }
+
+    .rowbla {
+        margin-top: 3rem;
+    }
+
+    .glob {
+        font-size: 0.65rem !important;
+        margin-left: 0.5rem;
+    }
+}
+@media (min-width: 429px) and (max-width:479.5px) {
+
+    #advantages .container-fluid {
+        margin-bottom: 5rem;
+    }
+
+    #advantages .advantages-line {
+        height: 420px;
+    }
+    .mtsh {
+        display: block;
+        margin-top: 0.1rem;
+    }
+
+    .fsz {
+        font-size: 1.2rem;
+        padding: 0 !important;
+        padding-bottom: 6px !important;
+    }
+
+    .linebottom {
+        margin-top: 6rem;
+        margin-bottom: 3rem;
+    }
+
+    .sect {
+        font-size: 1rem;
+        padding-left: 0 !important;
+    }
+
+    .DropAmount {
+        font-size: 0.7rem !important;
+    }
+
+    .btnAdd {
+        width: 50%;
+        font-size: 1rem;
+        padding: 10px;
+    }
+
+    .rowbla {
+        margin-top: 3rem;
+    }
+    .glob {
+        font-size: 0.75rem !important;
+        margin-left: 0.5rem;
+    }
+}
+@media (max-width: 479.5px) {
+    .page-section h2.section-heading {
+        margin-bottom: 1.6rem !important;
+    }
+    #mainNav .navbar-nav .nav-item .nav-link{
+        font-size: 0.6rem !important;
+
+    }
+    .nav-link {
+        padding: 0rem 1rem;
+    }
+    #udobst h4 {
+        font-size: 1.3rem !important;
+    }
+
+    .udobstForP {
+        font-size: 0.8rem !important;
+    }
+    
+
+    #catalogInfo{
+        background: none !important;
+    }
+   
+}
+@media (min-width: 478px) and (max-width:575.5px){
+    .DropAmount {
+        width: 40% !important;
+        font-size: 0.8rem !important;
+    }
+
+    .mtsh {
+        display: block;
+        margin-top: 0.2rem !important;
+    }
+
+    .btnAdd {
+        font-size: 1rem;
+        padding: 10px;
+        width: 45%;
+    }
+
+    .linebottom {
+        margin-top: 6rem !important;
+        margin-bottom: 4rem !important;
+    }
+
+    .glob {
+        font-size: 0.85rem !important;
+        margin-left: 0.5rem;
+    }
+
+    .sect {
+        font-size: 1rem;
+    }
+
+    .fsz {
+        font-size: 1.5rem;
+        padding: 0rem !important;
+        padding-bottom: 5px !important;
+    }
+}
 @media (min-width: 576px) and (max-width:768px) {
     .header-row {
         flex-direction: column;
     }
-
+    #catalogInfo {
+        padding: 2rem 0 !important;
+    }
+    .glob {
+        font-size: 0.9rem !important;
+        margin-left: 0.5rem;
+    }
+    .mtsh{
+        display:block;
+        margin-top: 0.1rem;
+    }
+    .fsz {
+        font-size: 1.2rem;
+        padding: 0 !important;
+    }
+    .linebottom{
+        margin-top: 6rem;
+        margin-bottom: 4rem;
+    }
+    .sect {
+        font-size: 1rem;
+        padding-left: 0 !important;
+    }
+    .DropAmount{
+        font-size: 0.7rem !important;
+    }
+    .btnAdd{
+        width: 40%;
+        font-size: 1rem;
+        padding: 10px;
+    }
+    .rowbla {
+        margin-top: 3rem;
+    }
     header.masthead .masthead-subheading {
         line-height: 2rem !important;
         font-size: 3rem !important;
@@ -2557,8 +2773,9 @@ pre {
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
     }
+    
     .copytext {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
         margin-bottom: 1rem !important;
     }
 
@@ -2585,17 +2802,7 @@ pre {
         font-weight: bold
     }
 }
-@media (max-width: 479.5px) {
-    .page-section h2.section-heading{
-        margin-bottom: 1.6rem !important;
-    }
-    #udobst h4{
-        font-size: 1.3rem !important;
-    }
-    .udobstForP{
-        font-size: 0.8rem !important;
-    }
-}
+
 @media (max-width: 398px) {
 
    .LoginReg{
@@ -2605,13 +2812,16 @@ pre {
         font-size: 0.8rem !important;
     }
 }
-
+#basket h2{
+    display: block;
+    margin-bottom: 3rem;
+}
     @media (min-width:576px) {
         .page-section {
             padding: 7.4rem 0;
         }
 
-        #catalog {
+        #catalog, #basket {
             padding: 7rem 0 6rem 0;
         }
     }
@@ -9320,7 +9530,7 @@ pre {
 
     .pb-4,
     .py-4 {
-        padding-bottom: 1.5rem !important;
+        padding-bottom: 2.3rem !important;
     }
 
     .pl-4,
@@ -10375,7 +10585,7 @@ pre {
 
         .ml-5,
         .mx-5 {
-            margin-left: 3rem !important;
+            margin-left: 3.1rem !important;
         }
 
         .mt-lg-0,
@@ -11853,20 +12063,35 @@ pre {
 
     #catalog {
         background-image: url("../images/CatalogFon.png");
-        background-repeat: no-repeat;
+       
         background-attachment: scroll;
         background-position: center center;
         background-size: cover;
     }
-
-    header.masthead .masthead-subheading {
-        font-size: 2rem;
-        line-height: 1.5rem;
-        font-weight: bold;
-        font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-        max-width: 100%;
-        color: #FFFFFF;
-    }
+#basket {
+    background-image: url("../images/CatalogFon.png");
+    background-attachment: scroll;
+    background-position: center center;
+    background-size: cover;
+}
+.btnBasket {
+    font-size: 0.6rem !important;
+    padding: 15px;
+    width: 50% !important;
+}
+.btnWidth {
+    font-size: 0.6rem !important;
+    padding: 10px 15px;
+    width: 100% !important;
+}
+header.masthead .masthead-subheading {
+    font-size: 2rem;
+    line-height: 1.5rem;
+    font-weight: bold;
+    font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    max-width: 100%;
+    color: #FFFFFF;
+}
 
     header.masthead .masthead-heading {
         /* width: 61.5%; */
@@ -11988,9 +12213,86 @@ pre {
         }
     }
 
+.mtsh {
+    display: block;
+    margin-top: 0.1rem;
+}
+.mbbot{
+    margin-bottom: 1.5rem;
+}
+.nameBask {
+    font-size: 1.8rem;
+    line-height: 2rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+.prices {
+    font-size: 1.2rem;
+}
+.line {
+    width: 50%;
+    background-color: #C95B56;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
 
-    @media (max-width:375.5px) {
+}
+.colred {
+    color: #CA2D2A;
+}
+@media (max-width:375.5px) {
+    .mtsh {
+            display: block;
+            margin-top: 0.3rem;
+        }
 
+        .myDec {
+            font-size: 0.65rem !important;
+        }
+
+        .fsz {
+            font-size: 1.5rem;
+            padding: 0 !important;
+            padding-bottom: 13px !important;
+        }
+
+        .linebottom {
+            margin-top: 5rem;
+            margin-bottom: 3rem;
+        }
+
+        .sect {
+            font-size: 0.65rem;
+            padding-left: 0 !important;
+        }
+        .mb-4{
+            margin-bottom: 0.6rem !important;
+        }
+
+        .DropAmount {
+            font-size: 0.7rem !important;
+        }
+
+        .forzag {
+            font-size: 0.8rem !important;
+            margin-bottom: 0.3rem;
+        }
+
+        .btnAdd {
+            width: 50%;
+            font-size: 0.65rem;
+            padding: 10px;
+        }
+        .mt-my{
+            margin-top: 0.8rem;
+        }
+
+        .rowbla {
+            margin-top: 3rem;
+        }
+
+        .glob {
+            font-size: 0.55rem !important;
+            margin-left: 0.2rem;
+        }
         #actuality h2.section-heading,
         #advantages h2.section-heading,
         #measurements h2.section-heading,
@@ -12102,16 +12404,7 @@ pre {
         }
     }
 
-    @media (min-width: 429px) and (max-width:479.5px) {
-
-        #advantages .container-fluid {
-            margin-bottom: 5rem;
-        }
-
-        #advantages .advantages-line {
-            height: 420px;
-        }
-    }
+   
 
     @media (min-width: 480px) and (max-width:767.5px) {
 
@@ -12260,7 +12553,7 @@ pre {
         .lrgr {
             padding-right: 0;
         }
-
+         
         .udobstForP {
             margin-bottom: 1.5rem !important;
         }
@@ -12270,12 +12563,34 @@ pre {
         .header-column {
             margin-top: 1%;
         }
+        .nameBask{
+            font-size: 1.2rem !important;
+        }
+        .DropAmount {
+            width: 60% !important;
+            margin-left: 1rem !important;
 
+        }
+        .glob {
+            font-size: 1.3rem !important;
+            margin-left: 1rem;
+        }
+        .DropAmount{
+     
+         
+
+        }
+        .fsz {
+            font-size: 1.5rem !important;
+            padding: 0rem !important;
+        }
         header.masthead .masthead-heading h3 {
             font-size: 1.4rem;
             padding-bottom: 4px;
         }
-
+        .btnAdd{
+            width: 35% !important;
+        }
         header.masthead .masthead-heading h5 {
             font-size: 0.9rem;
             line-height: 1.3rem;
@@ -12303,6 +12618,9 @@ pre {
         section ul {
             font-size: 1rem;
         }
+        .DropAmount {
+            width: 70% !important;
+        }
 
         #measurements img {
             width: 60%;
@@ -12313,10 +12631,21 @@ pre {
         #measurements .img-1 p {
             margin-left: 30%;
         }
+       
+        .glob {
+            font-size: 1.6rem !important;
+        }
+        .fsz {
+            font-size: 2.2rem !important;
+            padding-right: 0.5rem;
+        }
     }
 
-    @media (min-width: 768px) and (max-width: 991.5px) {
-        #measurements img {
+.DropAmount{
+    width: 50%;
+}
+@media (min-width: 768px) and (max-width: 991.5px) {
+    #measurements img {
             width: 70%;
             height: 70%;
         }
@@ -12618,6 +12947,7 @@ pre {
             left: 50%;
         }
 
+
         .timeline > li {
             min-height: 100px;
             margin-bottom: 100px;
@@ -12680,13 +13010,17 @@ pre {
         #mainNav #contact-hidden {
             font-size: 0;
         }
+
+        .nameBask {
+            font-size: 1.4rem;
+        }
     }
 
     @media (min-width: 1200px) {
         .timeline > li {
             min-height: 170px;
         }
-
+      
             .timeline > li .timeline-panel {
                 padding: 0 20px 20px 100px;
             }
@@ -12726,15 +13060,14 @@ pre {
         height: 2.75rem;
     }
 
-section#contact {
- 
-    background-image: url("../images/contactFon.png") !important;
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-    background-position: center center;
-    background-size: cover;
-}
+    section#contact {
+        background-image: url("../images/contactFon.png") !important;
+        background-repeat: no-repeat;
+        background-attachment: scroll;
+        background-position: center center;
+        background-size: cover;
     }
+}
 
 
 
@@ -12810,7 +13143,7 @@ section#contact {
         font-size: 2.2rem;
     }
     #mainNav .navbar-brand img {
-        height: 3.6rem;
+        height: 3rem;
     }
 
     .footer {

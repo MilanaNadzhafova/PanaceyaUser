@@ -27,8 +27,8 @@
 
         }
         <div class="linebottom">
-            <div class="row justify-content-center">
-                <a class="js-scroll-trigger mt-3"  href="~/Medicines/Index" target="_self">
+            <div class="row justify-content-center rowbla">
+                <a class="js-scroll-trigger mt-3" href="~/Medicines/Index" target="_self">
                     <i class="fas fa-arrow-left fsz"></i>
                 </a>
                 <div class="text-center mb-1 mt-3">
@@ -60,9 +60,9 @@
                     </span>
                 </div>
                 <div class="col-7 sect text-right">
-                    <span>Количество штук:</span>
+                    <span class="mtsh">Количество штук:</span>
                 </div>
-                <div class="col-1">
+                <div class="col-5 col-sm-3 col-md-2 justify-content-end">
 
                     @Html.DropDownList("AmountList", list, htmlAttributes: new { @class = "form-control DropAmount" })
                 </div>
@@ -75,10 +75,10 @@
 
             </div>
             <div class="text-center mt-4 font-weight-bold source">
-                <span class = "forzag">Описание</span>
+                <span class="forzag">Описание</span>
 
             </div>
-            <div class="pl-5">
+            <div class="pl-5 myDec">
                 @Html.DisplayFor(model => model.Description)
 
             </div>
@@ -89,12 +89,15 @@
 
         <span id="idMedicine" class="d-none">@Model.ID_Medicine</span>
 
-      
+
     </div>
+  
+
     <div id="ModalLimit" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header text-center CompleteReg" style="color:white!important">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Добавление товара</h5>
                     <button type="button" class="close" data-dismiss="modal" style="outline:none!important" aria-label="Close">
                         <span aria-hidden="true" style="color: black !important; font-size: 2rem">&times;</span>
                     </button>
@@ -104,7 +107,6 @@
                         Максимальное количество товара, которое вы можете добавить:
                         <span id="limit"></span>
                     </p>
-                    <button class="btn LoginBtn">Перейти к корзине</button>
 
                 </div>
 
